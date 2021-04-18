@@ -16,9 +16,10 @@ void merge(std::vector<T>& vec, int begin, int mid, int end) {
       tmp[i] = vec[left++];
     else
       tmp[i] = vec[right++]; 
-  }
-  for (int i=0; i<tmp.size(); i++) 
+  } 
+  for (int i=0; i<tmp.size(); i++) { 
     vec[begin++] = tmp[i];
+  }
 }
 
 template<class T>
@@ -41,7 +42,10 @@ int main() {
     printf("%d ",vec[i]);
   }
   printf("\n");
+#pragma omp parallel
+{
   merge_sort(vec, 0, n-1);
+}
   for (int i=0; i<n; i++) {
     printf("%d ",vec[i]);
   }
